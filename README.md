@@ -1,6 +1,6 @@
 # Stream Viewer
 
-[![Stream Viewer Demo](https://www.youtube.com/upload_thumbnail?v=xfWTY3sdRKY&t=hqdefault&ts=1557559325868)](https://youtu.be/xfWTY3sdRKY "Stream Viewer Demo")
+[![Stream Viewer](http://img.youtube.com/vi/xfWTY3sdRKY/0.jpg)](https://youtu.be/xfWTY3sdRKY "Stream Viewer")
 
 [Link to Live Demo](https://blissful-mccarthy-410be4.netlify.com/)
 
