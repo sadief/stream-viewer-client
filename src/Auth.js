@@ -6,7 +6,7 @@ class Auth {
             domain: process.env.REACT_APP_AUTH0_DOMAIN,
             audience: `https://${process.env.REACT_APP_AUTH0_DOMAIN}/userinfo`,
             clientID: process.env.REACT_APP_AUTH0_CLIENT_ID,
-            redirectUri: 'http://localhost:3000/callback',
+            redirectUri: 'https://blissful-mccarthy-410be4.netlify.com/callback',
             responseType: 'id_token',
             scope: 'openid profile'
         });
@@ -41,18 +41,34 @@ class Auth {
                 if (!authResult || !authResult.idToken) {
                     return reject(err);
                 }
-                this.idToken = authResult.idToken;
-                this.profile = authResult.idTokenPayload;
-                this.expiresAt = authResult.idTokenPayload.exp * 1000;
+                this.setSession(authResult);
                 resolve();
             });
         })
     }
 
+    setSession(authResult) {
+        this.idToken = authResult.idToken;
+        this.profile = authResult.idTokenPayload;
+        // set the time that the id token will expire at
+        this.expiresAt = authResult.idTokenPayload.exp * 1000;
+    }
+
     signOut() {
-        this.idToken = null;
-        this.profile = null;
-        this.expiresAt = null;
+        this.auth0.logout({
+            returnTo: 'https://blissful-mccarthy-410be4.netlify.com',
+            clientID: process.env.REACT_APP_AUTH0_CLIENT_ID,
+        });
+    }
+
+    silentAuth() {
+        return new Promise((resolve, reject) => {
+            this.auth0.checkSession({}, (err, authResult) => {
+                if (err) return reject(err);
+                this.setSession(authResult);
+                resolve();
+            });
+        });
     }
 }
 
