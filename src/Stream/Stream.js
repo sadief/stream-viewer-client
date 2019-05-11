@@ -32,7 +32,7 @@ class Stream extends Component {
             msg = {}
         }
 
-        axios.post('http://localhost:3030/messages', {
+        axios.post('https://safe-wave-83000.herokuapp.com/messages', {
             messages: msgs,
         })
             .then(function (response) {
