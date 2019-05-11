@@ -1,6 +1,6 @@
 # Stream Viewer
 
-Click to see a recording of a live demo
+## Click to see a recording of a live demo
 [![Stream Viewer](http://img.youtube.com/vi/xfWTY3sdRKY/0.jpg)](https://youtu.be/xfWTY3sdRKY "Stream Viewer")
 
 [Link to Live Demo](https://blissful-mccarthy-410be4.netlify.com/)
