@@ -19,6 +19,7 @@ class Streams extends Component {
         history.push({ pathname: `/video/${id}`, state: { key: id, name: name } });
     };
 
+    // Handles the Youtube authentication
     authenticate = () => {
         return gapi.auth2.getAuthInstance()
             .signIn({ scope: "https://www.googleapis.com/auth/youtube.readonly" })
@@ -38,6 +39,7 @@ class Streams extends Component {
                 function (err) { console.error("Error loading GAPI client for API", err); });
     }
 
+    // Makes request to YT Live Search to retrieve the current top live streaming videos
     execute = () => {
         return gapi.client.youtube.search.list({
             "part": "snippet,id",

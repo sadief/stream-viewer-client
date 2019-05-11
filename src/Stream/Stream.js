@@ -64,6 +64,7 @@ class Stream extends Component {
 
     async componentDidMount() {
 
+        // Loads up the client and triggers execute which makes the API request
         function loadClient() {
             return gapi.client.load("https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest")
                 .then(function () {
@@ -72,7 +73,7 @@ class Stream extends Component {
                 },
                     function (err) { console.error("Error loading GAPI client for API", err); });
         }
-
+        // Makes request to YT Live Videos endpoint to get the chat id
         var execute = () => {
             return gapi.client.youtube.videos.list({
                 "part": "snippet, liveStreamingDetails",
@@ -84,6 +85,8 @@ class Stream extends Component {
                 },
                     function (err) { console.error("Execute error", err); });
         }
+
+        // Makes request to YT Live Chat api video to get the most recent chats
         var getChat = () => {
             return gapi.client.youtube.liveChatMessages.list({
                 "liveChatId": this.state.chatId,
@@ -106,10 +109,8 @@ class Stream extends Component {
     }
 
     render() {
-        // console.log("Current State: ", this.state)
         const { id, name, messages } = this.state;
         const live = "https://www.youtube.com/embed/" + id
-
 
         if (id === null) return <p>Loading ...</p>;
         return (
